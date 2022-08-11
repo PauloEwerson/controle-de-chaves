@@ -8,4 +8,6 @@ route.get('/', chavesController.getAll);
 
 route.get('/:id', chavesController.getById);
 
+route.post('/', chavesController.add);
+
 module.exports = route;

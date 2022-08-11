@@ -26,7 +26,19 @@ const getById = async (req, res) => {
   }
 };
 
+const add = async (req, res) => {
+  const { colab } = req.body;
+  try {
+    const newColab = await chaveService.add(colab);
+    return res.status(201).json(newColab);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: ERROR_500 });
+  }
+};
+
 module.exports = {
   getAll,
-  getById
+  getById,
+  add
 };
