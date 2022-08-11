@@ -6,4 +6,6 @@ const route = express.Router();
 
 route.get('/', chavesController.getAll);
 
+route.get('/:id', chavesController.getById);
+
 module.exports = route;
