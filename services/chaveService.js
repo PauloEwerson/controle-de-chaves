@@ -13,9 +13,17 @@ const update = async (person) => {
   return { ...person, id };
 };
 
+const exclude = async (id) => {
+  const colaborador = await chavesModel.getById(id);
+  if (!colaborador) return null;
+  await chavesModel.exclude(id);
+  return { ...colaborador };
+};
+
 module.exports = {
   getAll,
   getById,
   add,
-  update
+  update,
+  exclude
 };

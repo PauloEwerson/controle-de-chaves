@@ -12,4 +12,6 @@ route.post('/', chavesController.add);
 
 route.put('/:id', chavesController.update);
 
+route.delete('/:id', chavesController.exclude);
+
 module.exports = route;

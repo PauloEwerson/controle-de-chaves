@@ -52,9 +52,21 @@ const update = async (req, res) => {
   }
 };
 
+const exclude = async (req, res) => {
+  try {
+    const colaborador = await chaveService.exclude(req.params.id);
+    if (!colaborador) return res.status(404).json({ message: 'Pessoa não encontrada' });
+    return res.status(200).json(colaborador);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: ERROR_500 });
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   add,
-  update
+  update,
+  exclude
 };

@@ -18,20 +18,24 @@ const add = async (colab) => {
   return { id: result.insertId, colab };
 };
 
-const update = async (colab, colab_id) => {
+const update = async (colab, id) => {
   const [result] = await connection
   .execute(`
     UPDATE tab_colaboradores 
     SET colab = ?
     WHERE colab_id = ?;`, 
-    [colab, colab_id]); 
+    [colab, id]); 
 
     return result;
 };
+
+const exclude = async (id) => connection
+  .execute('DELETE FROM tab_colaboradores WHERE colab_id = ?;', [id]);
 
 module.exports = {
   getAll,
   getById,
   add,
-  update
+  update,
+  exclude
 };
