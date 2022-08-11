@@ -18,8 +18,20 @@ const add = async (colab) => {
   return { id: result.insertId, colab };
 };
 
+const update = async (colab, colab_id) => {
+  const [result] = await connection
+  .execute(`
+    UPDATE tab_colaboradores 
+    SET colab = ?
+    WHERE colab_id = ?;`, 
+    [colab, colab_id]); 
+
+    return result;
+};
+
 module.exports = {
   getAll,
   getById,
-  add
+  add,
+  update
 };

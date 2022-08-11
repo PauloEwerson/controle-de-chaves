@@ -10,4 +10,6 @@ route.get('/:id', chavesController.getById);
 
 route.post('/', chavesController.add);
 
+route.put('/:id', chavesController.update);
+
 module.exports = route;

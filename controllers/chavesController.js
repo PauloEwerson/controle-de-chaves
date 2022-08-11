@@ -37,8 +37,24 @@ const add = async (req, res) => {
   }
 };
 
+const update = async (req, res) => {
+  const { id } = req.params;
+  const { colab } = req.body;
+  try {
+    const people = await chaveService.update({ colab, id });
+    if (!people) {
+      return res.status(404).json({ message: 'Pessoa não encontrada' });
+    }
+    return res.status(200).json(people);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: ERROR_500 });
+  }
+};
+
 module.exports = {
   getAll,
   getById,
-  add
+  add,
+  update
 };
